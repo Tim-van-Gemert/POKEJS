@@ -6,18 +6,13 @@ import GetPokemon from "../components/getPokemon";
 import PostPokemon from "../components/postPokemon";
 import InitPokemon from "./api/initialize/initPokemon";
 import ChooseStarter from "@/components/chooseStarter";
+import RetrieveSave from "@/components/retrieveSave";
 
 export default function Home() { 
-  const [HasChosenStarter, setHasChosenStarter] = useState(false)
-  if (!HasChosenStarter) {
+
     return (
-      <ChooseStarter setHasChosenStarter={setHasChosenStarter}/>
+      <RetrieveSave/>
     )
-  } else {
-    return (
-      <div className="text-white">test</div>
-    )
-  }
 
 }
 

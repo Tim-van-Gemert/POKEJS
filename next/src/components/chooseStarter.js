@@ -2,13 +2,28 @@ import { useEffect, useState } from "react";
 import GetPokemon from "./getPokemon";
 import DisplayStarterPokemon from "./displayPokemon";
 import PostPokemon from "@/components/postPokemon";
+import SaveGame from "./saveGame";
+
 
 export default function ChooseStarter(props) { 
     const query = "SELECT * FROM pokemon WHERE name IN ('Charmander', 'Bulbasaur', 'Squirtle')"
     const [requestedPokemon, setRequestedPokemon] = useState()
     const [selectedStarter, setSelectedStarter] = useState()
     const [confirmed, setConfirmed] = useState()
+    const [HasChosenStarter, setHasChosenStarter] = useState(false)
 
+    if (HasChosenStarter) {
+        const save = {
+            checkpoint: 'HasChosenStarter',
+            team:  {selectedStarter},
+            badges:  {latest: 'none'},
+            storedPokemon:  {pokemon: 'none'},
+        }
+
+        return (
+            <SaveGame currentSave={save} />
+        )
+    }
 
     if (requestedPokemon == undefined) {
         return <GetPokemon query={query} setRequestedPokemon={setRequestedPokemon}/>
@@ -16,7 +31,7 @@ export default function ChooseStarter(props) {
 
     if (confirmed != undefined) {
         <PostPokemon pokemonDataArray={[selectedStarter]} destination={'team'}/> 
-        return props.setHasChosenStarter(true);
+        return setHasChosenStarter(true);
     }
     
     console.log(selectedStarter)

@@ -18,6 +18,8 @@
     PRIMARY KEY (`id`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS `team`;
+
   CREATE TABLE `team` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(255) DEFAULT NULL,
@@ -32,3 +34,14 @@
     PRIMARY KEY (`id`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+DROP TABLE IF EXISTS `saves`;
+
+CREATE TABLE `saves` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `checkpoint` varchar(255) NOT NULL,
+    `badges` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL CHECK (json_valid(`badges`)),
+    `team` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL CHECK (json_valid(`team`)),
+    `storedPokemon` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL CHECK (json_valid(`storedPokemon`)),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
