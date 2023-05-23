@@ -37,11 +37,19 @@ DROP TABLE IF EXISTS `team`;
 
 DROP TABLE IF EXISTS `saves`;
 
+-- Drop the existing table if it exists
+DROP TABLE IF EXISTS `saves`;
+
+-- Create the new table with adjusted constraints
 CREATE TABLE `saves` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `checkpoint` varchar(255) NOT NULL,
     `badges` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL CHECK (json_valid(`badges`)),
-    `team` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL CHECK (json_valid(`team`)),
+    `team` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
     `storedPokemon` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL CHECK (json_valid(`storedPokemon`)),
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+INSERT INTO saves (checkpoint, badges, team, storedPokemon)
+    VALUES ('NewGame', '{}', '{}', '{}');

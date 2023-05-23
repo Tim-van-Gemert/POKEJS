@@ -9,10 +9,26 @@ import ChooseStarter from "@/components/chooseStarter";
 import RetrieveSave from "@/components/retrieveSave";
 
 export default function Home() { 
-
+  // to be moved:
+  const [currentSave, setCurrentSave] = useState(null)
+  if (currentSave == null) {
     return (
-      <RetrieveSave/>
+      <RetrieveSave setCurrentSave={setCurrentSave} />
     )
+  } else {
+    switch (currentSave[0].checkpoint) {
+      case "NewGame":
+        return (
+          <ChooseStarter/>
+        )
+        break;
+      case "HasChosenStarter":
+        return (
+          <div className="text-white">Test</div>
+        )
+        break;
+    }
+  }
 
 }
 

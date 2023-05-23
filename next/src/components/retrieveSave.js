@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function RetrieveSave (props) {
-
-    const [latestSave, setLatestSave] = useState();
     
     useEffect(() => {
       const url = 'http://localhost/pokejs/next/src/pages/api/savesdb.php';
@@ -15,14 +13,13 @@ export default function RetrieveSave (props) {
       .then(response => response.data)
       .then(data => {
         if (data != undefined) {  
-          return setLatestSave(data)
+          return props.setCurrentSave(data)
         }
       })
       .catch(error => {
         console.error(error);
       });``
     }, []);
-    
-    console.log(latestSave)
+
 }
 
