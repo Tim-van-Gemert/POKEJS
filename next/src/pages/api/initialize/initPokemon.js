@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import PostPokemon from './postPokemon';
+import PostPokemon from '../../../components/postPokemon';
 
 export default function InitPokemon(props) {
   const [pokemonDataArray, setPokemonDataArray] = useState([]);
@@ -35,6 +35,6 @@ export default function InitPokemon(props) {
   }, []);
 
   return (
-    <PostPokemon setInitializedPokemon={props.setInitializedPokemon} pokemonDataArray={pokemonDataArray}/>
+    <PostPokemon setInitializedPokemon={props.setInitializedPokemon} destination={'pokemon'} pokemonDataArray={pokemonDataArray}/>
   );
 }

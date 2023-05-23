@@ -3,14 +3,22 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Card from "@/components/pokemonCard";
 import GetPokemon from "../components/getPokemon";
-import PostPokemon from "./api/initialize/postPokemon";
+import PostPokemon from "../components/postPokemon";
 import InitPokemon from "./api/initialize/initPokemon";
 import ChooseStarter from "@/components/chooseStarter";
 
 export default function Home() { 
-  return (
-      <ChooseStarter/>
-  )
+  const [HasChosenStarter, setHasChosenStarter] = useState(false)
+  if (!HasChosenStarter) {
+    return (
+      <ChooseStarter setHasChosenStarter={setHasChosenStarter}/>
+    )
+  } else {
+    return (
+      <div className="text-white">test</div>
+    )
+  }
+
 }
 
 

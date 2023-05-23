@@ -5,7 +5,7 @@ export default function GetPokemon (props) {
 
     const [pokemon, setPokemon] = useState('');
     useEffect(() => {
-      const url = 'http://localhost/pokejs/next/src/pages/api/db.php';
+      const url = 'http://localhost/pokejs/next/src/pages/api/gamedb.php';
       axios.get(url, {
         params: {
           query: props.query
@@ -14,7 +14,7 @@ export default function GetPokemon (props) {
       .then(response => response.data)
       .then(data => {
         if (data != undefined) {
-          return props.setRequestedPokemon(eval(data))
+          return props.setRequestedPokemon(data)
         }
       })
       .catch(error => {

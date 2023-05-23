@@ -36,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Assuming you expect JSON data in the request body
     $data = json_decode(file_get_contents('php://input'), true);
     // Extract the values from $data and construct your SQL query accordingly
-    // For example:
     $name = $data['name'];
     $moves = $data['moves'];
     $base_experience = $data['base_experience'];
@@ -46,12 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stats = $data['stats'];
     $front_sprite = $data['front_sprite'];
     $back_sprite = $data['back_sprite'];
-
+    $destination= $data['destination'];
 
     // insert new data
-    $query = "INSERT INTO pokemon (name, moves, base_experience, species, types, abilities, stats, front_sprite, back_sprite)
+    $query = "INSERT INTO $destination (name, moves, base_experience, species, types, abilities, stats, front_sprite, back_sprite)
           SELECT '$name', '$moves', '$base_experience', '$species', '$types', '$abilities', '$stats', '$front_sprite', '$back_sprite'
-          WHERE NOT EXISTS (SELECT 1 FROM pokemon WHERE name = '$name')";
+          WHERE NOT EXISTS (SELECT 1 FROM $destination WHERE name = '$name')";
     $result = query($query);
 
     // Return a success message or appropriate response
